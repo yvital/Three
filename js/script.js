@@ -6,25 +6,41 @@ window.onload = function(){
 	canvas.setAttribute('width',width);
 	canvas.setAttribute('height',height);
 
-	var renderer = new THREE.WebGLRenderer({canvas: canvas});
-	renderer.setClearColor(0x000000);
+var camera, scene, renderer;
+var geometry, material, mesh;
 
-	var scene = new THREE.Scene();
+init();
+animate();
 
-	var camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 5000);
-	camera.position.set(0, 0, 1000);
+function init() {
 
-	var light = new THREE.AmbientLight(0xffffff);
-	scene.add(light);
+	camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.01, 10 );
+	camera.position.z = 1;
 
-//	var geometry = new THREE.PlaneGeometry(300,300,12,12);
-	var geometry = new THREE.SphereGeometry(200,32,32);
-	var material = new THREE.MeshBasicMaterial({color: 0x00ff00, wireframe: true});
-	var mesh = new THREE.Mesh(geometry, material);
-	scene.add(mesh);
+	scene = new THREE.Scene();
 
+	geometry = new THREE.BoxGeometry( 0.2, 0.2, 0.2 );
+	material = new THREE.MeshNormalMaterial();
 
-	renderer.render(scene, camera);
+	mesh = new THREE.Mesh( geometry, material );
+	scene.add( mesh );
+
+	renderer = new THREE.WebGLRenderer( { canvas: canvas, antialias: true } );
+	renderer.setSize( window.innerWidth, window.innerHeight );
+	document.body.appendChild( renderer.domElement );
+
+}
+
+function animate() {
+
+	requestAnimationFrame( animate );
+
+	mesh.rotation.x += 0.01;
+	mesh.rotation.y += 0.02;
+
+	renderer.render( scene, camera );
+
+}
 
 
 }	
