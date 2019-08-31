@@ -7,7 +7,7 @@ window.onload = function(){
 	document.body.appendChild( renderer.domElement );
 
 	var geometry = new THREE.BoxGeometry( 1.3, 1.3, 1.3 );
-	var cubeTexture = new THREE.TextureLoader().load('./img/cube.jpg');
+	var cubeTexture = new THREE.TextureLoader().load('https://raw.githubusercontent.com/yvital/Three/master/img/cube.jpg');
 	var material = new THREE.MeshBasicMaterial({ map: cubeTexture });
 	var cube = new THREE.Mesh( geometry, material );
 	scene.add( cube );
