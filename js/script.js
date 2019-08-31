@@ -6,8 +6,9 @@ window.onload = function(){
 	renderer.setSize( window.innerWidth, window.innerHeight );
 	document.body.appendChild( renderer.domElement );
 
-	var geometry = new THREE.BoxGeometry( 1, 1, 1 );
-	material = new THREE.MeshNormalMaterial();
+	var geometry = new THREE.BoxGeometry( 1.3, 1.3, 1.3 );
+	var cubeTexture = new THREE.TextureLoader().load('/img/cube.jpg');
+	var material = new THREE.MeshBasicMaterial({ map: cubeTexture });
 	var cube = new THREE.Mesh( geometry, material );
 	scene.add( cube );
 
